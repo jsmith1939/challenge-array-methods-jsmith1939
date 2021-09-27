@@ -185,18 +185,25 @@ function* newFlat(array, depth) {
 		}
 	}
 }
-let output = [];
 
 const arr = [1, 2, [3, 4, [5, 6]]];
-const flattened = [...newFlat(arr, Infinity)];
-// [1, 2, 3, 4, 5, 6]
+const flattened = [...newFlat(arr)];
+const flatMethod = [...newFlat(arr, 3)];
+console.log(flattened);
+console.assert(flattened.length === 5);
+console.assert(flatMethod.length === 6);
 
-function newReduce(val1, callback) {
-	let newVal;
-	for (i = 0; i < val1.length; i++) {
+let reducer = (a, b) => a + b;
+function newReduce(val1, callback, accumulator) {
+	let newVal = val1[0];
+	if (accumulator) {
+		newVal = accumulator;
+	}
+	for (i = 1; i < val1.length; i++) {
 		newVal = callback(newVal, val1[i]);
 	}
 	return newVal;
 }
-console.assert(newReduce([1, 2, 3] === 6));
-console.assert(newReduce([4, 2, 3] === 9));
+let sum = newReduce([1, 2, 3], reducer);
+console.assert(sum === 6);
+console.assert(newReduce([4, 2, 3], reducer) === 9);
