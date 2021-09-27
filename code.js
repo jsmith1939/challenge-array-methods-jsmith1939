@@ -142,7 +142,7 @@ let map1 = (element) => element * 2;
 function newMap(val1, callback) {
 	let newArray = [];
 	for (i = 0; i < val1.length; i++) {
-		newArray.push(callback(val1[i]));
+		newArray.push(callback(val1[i], i, val1));
 	}
 	return newArray;
 }
@@ -159,15 +159,15 @@ let filter1 = (element) => element % 2 === 0;
 function newFilter(val1, callback) {
 	let newArray = [];
 	for (i = 0; i < val1.length; i++) {
-		if (callback(val1[i]) === true) {
+		if (callback(val1[i], i, val1) === true) {
 			newArray.push(val1[i]);
 		}
 	}
 	return newArray;
 }
 let testFilter = newFilter([1, 2, 3, 4, 5, 6], filter1);
-console.assert(3 === newFilter([1, 2, 3, 4, 5, 6], testFilter.length));
-console.assert(1 === newFilter([1, 3, 5, 6], testFilter.length));
+console.assert(3 === testFilter.length);
+console.assert(1 === newFilter([1, 3, 5, 6], filter1).length);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Advance Challenge:
@@ -188,7 +188,7 @@ function* newFlat(array, depth) {
 let output = [];
 
 const arr = [1, 2, [3, 4, [5, 6]]];
-const flattened = [...flatten(arr, Infinity)];
+const flattened = [...newFlat(arr, Infinity)];
 // [1, 2, 3, 4, 5, 6]
 
 function newReduce(val1, callback) {
