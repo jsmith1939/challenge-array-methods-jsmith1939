@@ -171,6 +171,7 @@ console.assert(1 === newFilter([1, 3, 5, 6], filter1).length);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Advance Challenge:
+// Nathan Holt assisted
 // Flat challenge:
 function* newFlat(array, depth) {
 	if (depth === undefined) {
@@ -199,7 +200,7 @@ function newReduce(val1, callback, accumulator) {
 	if (accumulator) {
 		newVal = accumulator;
 	}
-	for (i = 1; i < val1.length; i++) {
+	for (i = accumulator ? 0 : 1; i < val1.length; i++) {
 		newVal = callback(newVal, val1[i]);
 	}
 	return newVal;
