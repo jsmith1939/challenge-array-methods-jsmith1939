@@ -12,4 +12,4 @@ _(Instructions for how to install the unit testing framework and run the unit te
 
 For a software developer, what are the benefits of good unit tests? Are there any drawbacks to writing unit tests?
 
-_(Put your reflection answer here.)_
+The benefits of good unit tests are is making sure that the code is functional. The only drawback to writing unit tests is that it is time consuming and extremely tedious.
